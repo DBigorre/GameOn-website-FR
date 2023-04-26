@@ -37,7 +37,7 @@ const firstInput = document.getElementById('first-input');
 const firstError = document.getElementById('first-error');
 
 firstInput.addEventListener('blur', function() {
-  if (firstInput.value.length < 2) {
+  if (firstInput.value.trim().length < 2 ) {
     firstError.innerHTML = 'Le prénom doit comporter au moins 2 caractères.';
     return false;
   } else {
@@ -51,7 +51,7 @@ const lastInput = document.getElementById('last-input');
 const lastError = document.getElementById('last-error');
 
 lastInput.addEventListener('blur', function() {
-  if (lastInput.value.length < 2) {
+  if (lastInput.value.trim().length < 2) {
     lastError.innerHTML = 'Le nom doit comporter au moins 2 caractères.';
     return false;
   } else {
@@ -112,11 +112,10 @@ function isLocationSelected() {
   for (let i = 0; i < locationInputs.length; i++) {
     if (locationInputs[i].checked) {
       return true;
-    } else {
-      return false;
     }
   }
-}
+  return false;
+};
 
 function validateLocation() {
   if (!isLocationSelected()) {
@@ -126,11 +125,25 @@ function validateLocation() {
     locationError.innerHTML = '';
     return true;
   }
-}
+};
+
+reserve.addEventListener('submit', function(e) {
+  if (!validateLocation()) {
+    e.preventDefault();
+  }
+});
 
 // condition verif
 const conditionInput = document.getElementById('checkbox1');
 const conditionError = document.getElementById('condition-error');
+
+function isConditionAccepted() {
+  if (!conditionInput.checked) {
+    return false;
+  } else {
+    return true;
+  }
+};
 
 conditionInput.addEventListener('change', function() {
   if (!conditionInput.checked) {
@@ -142,4 +155,9 @@ conditionInput.addEventListener('change', function() {
   }
 });
 
-//form valid
+reserve.addEventListener('submit', function(e) {
+  if (!isConditionAccepted()) {
+    e.preventDefault();
+  }
+});
+
