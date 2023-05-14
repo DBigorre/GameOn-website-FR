@@ -39,10 +39,8 @@ const firstError = document.getElementById('first-error');
 firstInput.addEventListener('blur', function() {
   if (firstInput.value.trim().length < 2 ) {
     firstError.innerHTML = 'Le prénom doit comporter au moins 2 caractères.';
-    return false;
   } else {
     firstError.innerHTML = ''
-    return true;
   }
 });
 
@@ -53,10 +51,8 @@ const lastError = document.getElementById('last-error');
 lastInput.addEventListener('blur', function() {
   if (lastInput.value.trim().length < 2) {
     lastError.innerHTML = 'Le nom doit comporter au moins 2 caractères.';
-    return false;
   } else {
     lastError.innerHTML = '';
-    return true;
   }
 });
 
@@ -68,10 +64,8 @@ emailInput.addEventListener('blur', function() {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(emailInput.value)) {
     emailError.innerHTML = 'Veuillez entrer une adresse email valide.';
-    return false;
   } else {
     emailError.innerHTML = '';
-    return true;
   }
 });
 
@@ -82,10 +76,8 @@ const dateError = document.getElementById('birthdate-error');
 dateInput.addEventListener('blur', function() {
   if (dateInput.value === '' ){
     dateError.innerHTML = 'Veuillez entrer votre date de naissance.';
-    return false;
   } else {
     dateError.innerHTML = '';
-    return true;
   }
 });
 
@@ -97,10 +89,8 @@ numberInput.addEventListener('blur', function() {
   const value = numberInput.value;
   if (value === '' || isNaN(value) || !Number.isInteger(Number(value))) {
     numberError.innerHTML = 'Veuillez entrer un nombre entier.';
-    return false;
   } else {
     numberError.innerHTML = '';
-    return true
   }
 });
 
@@ -155,9 +145,16 @@ conditionInput.addEventListener('change', function() {
   }
 });
 
+const modalbody = document.getElementById('modalbody');
 reserve.addEventListener('submit', function(e) {
   if (!isConditionAccepted()) {
     e.preventDefault();
-  }
+  } else {
+      reserve.submit();
+      modalbody.innerHTML = 'Merci pour votre inscription';
+      modalbody.classList.add('test');
+  };
 });
 
+const closeLastModal = document.getElementById('closelastmodal');
+closeLastModal.addEventListener('click', closeModal);
