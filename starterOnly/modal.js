@@ -152,7 +152,7 @@ reserve.addEventListener('submit', function(e) {
   } else {
       reserve.submit();
       modalbody.innerHTML = 'Merci pour votre inscription';
-      modalbody.classList.add('test');
+      modalbody.classList.add('merci');
   };
 });
 
